@@ -196,7 +196,7 @@ Executive-Loan-Default-Risk-Analysis-Dashboard
 
 ### Tableau Dashboard
 
-![Tableau Dashboard](images/Tableau dashboard.png)
+images/Tableau Dashboard.png
 
 ---
 
