@@ -190,7 +190,7 @@ Executive-Loan-Default-Risk-Analysis-Dashboard
 
 ### Power BI Dashboard
 
-![Power BI Dashboard](images/powerbi_dashboard.png)
+![Power BI Dashboard](images/PowerBI_Dashboard.png)
 
 ---
 
