@@ -294,7 +294,8 @@ This system demonstrates how financial risk analytics can:
 
 ## Executive Loan Risk Intelligence Dashboard
 
-> Add your dashboard screenshots here
+> ![PowerBI_Dashboard](images/PowerBI_Dashboard.png)
+> ![Tableau_Dashboard](images/Tableau_Dashboard.png)
 
 ```markdown id="6fhw1v"
 ![Dashboard Preview](Images/dashboard_preview.png)
