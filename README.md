@@ -1,87 +1,35 @@
-# 📉 Executive Loan Default Risk Analysis Dashboard
+# Loan Approval Risk Analysis
 
-**Author:** Vishal Singh | [LinkedIn](https://linkedin.com/in/vishal-singhdataanalyst) | [GitHub](https://github.com/vishaaaal15)  
-**Stack:** SQL · Python · Power BI · Tableau  
-**Dataset:** 50,000+ borrower profiles | ₹400M+ loan exposure  
-**Domain:** Default Risk · Delinquency Analytics · Executive Reporting
+**Tools:** SQL · Python (Pandas, Matplotlib, Seaborn)
+**Dataset:** 5,000 loan applications
 
----
+## Overview
 
-## 📌 Project Overview
+An exploratory analysis of loan application data, looking at the relationship between applicant attributes (income, credit score, employment type, experience) and loan approval outcomes.
 
-An executive-facing loan default risk dashboard that analyses 50K+ borrower profiles to assess default probability, track delinquency trends, and monitor portfolio quality. Designed to give senior leadership a real-time, data-driven view of repayment behaviour and at-risk exposure — built for both Power BI and Tableau.
+## What I did
 
----
+- Loaded and inspected a 5,000-row loan application dataset; identified missing values in Income (196), CreditScore (194), and Education (198), and noted a small number of invalid negative values in Income and LoanAmount.
+- Visualized loan approval distribution (23% approved, 77% not approved), credit score vs. approval outcome (boxplot), income vs. loan amount (scatter), and feature correlations (heatmap).
+- Filtered for two manually-defined risk segments: low credit score (<600) with high loan amount (>₹20,000), and high income/high experience applicants.
+- Wrote 10 SQL queries covering application volume, average income/loan amount, approval counts, city-level application volume, gender-level loan averages, credit score distribution, and the two risk-segment filters above.
 
-## 📁 Repository Structure
+## Repo contents
 
-```
-Executive-Loan-Default-Risk-Analysis-Dashboard/
-│
-├── data/
-│   └── borrower_profiles.csv            # 50K+ borrower records
-│
-├── sql_queries/
-│   ├── 01_default_overview.sql          # Portfolio-level default summary
-│   ├── 02_delinquency_trend.sql         # Monthly delinquency bucket movement
-│   ├── 03_borrower_segmentation.sql     # Risk segment classification
-│   ├── 04_repayment_behaviour.sql       # On-time vs late vs missed payments
-│   └── 05_writeoff_analysis.sql         # Written-off accounts deep-dive
-│
-├── python_analysis/
-│   ├── default_predictor.py             # ML-based default probability scoring
-│   └── cohort_analysis.py              # Vintage cohort default tracking
-│
-├── dashboards/
-│   ├── Loan_Default_PowerBI.pbix        # Power BI executive dashboard
-│   └── Loan_Default_Tableau.twbx       # Tableau version
-│
-└── outputs/
-    ├── default_risk_kri.csv             # Key risk indicators summary
-    └── at_risk_borrowers.csv            # Flagged high-risk accounts
-```
+- `loan_analysis.ipynb` — data loading, cleaning checks, and exploratory visualizations
+- `Loan_Analysis_queries.sql` — SQL queries against the loan dataset
+- `Executive Loan Default Risk Analysis Dashboard.pbix` / `Executive loan analysis dashboard.twbx` — Power BI and Tableau dashboard files
+- `images/` — supporting screenshots
 
----
+## Data note
 
-## 📊 Key Metrics & Findings
+This is a synthetic/public loan application dataset. The target variable is loan **approval**, not loan **default** — this project is an approval-driver analysis rather than a default-risk or delinquency model.
 
-| Metric | Value | Status |
-|--------|-------|--------|
-| Total Borrowers Analysed | 50,000+ | — |
-| Total Exposure | ₹400M+ | MONITOR |
-| Overall Default Rate | 15.6% | 🔴 ALERT |
-| DPD 90+ Accounts | 2,100+ | 🔴 ALERT |
-| Avg Credit Score (Defaulters) | 598 | 🔴 HIGH RISK |
-| Avg Credit Score (Performing) | 724 | ✅ NORMAL |
-| Top Default Segment | Self-Employed · Personal Loans | MONITOR |
+## Known issues
 
----
+- One SQL query references an `EmploymentStatus` column that doesn't exist in this dataset (the actual column is `EmploymentType`) — needs a fix before that query will run.
+- Both the Tableau and Power BI dashboards are still titled "Executive Loan Default Risk Analysis Dashboard," and the approval-distribution visual has mislabeled bars (both currently read "Total Loan Approved"). Pending fix: rename both dashboards to reflect approval analysis, and correct the bar labels so the non-approved (3,849) and approved (1,151) counts are labeled correctly in both files.
 
-## 📈 Dashboard Features
+## Next steps
 
-**Power BI — Executive Summary Page**
-- Default rate gauge vs threshold
-- Exposure at risk by loan type (treemap)
-- Month-on-month default trend (line chart)
-- Top 10 high-risk borrower segments (bar chart)
-
-**Tableau — Delinquency Deep-Dive**
-- DPD bucket waterfall (current → 30 → 60 → 90 → NPA)
-- Repayment behaviour heatmap (segment × month)
-- Geographic default rate choropleth map
-- Vintage cohort performance curves
-
----
-
-## 🛠️ How to Run
-
-```bash
-git clone https://github.com/vishaaaal15/Executive-Loan-Default-Risk-Analysis-Dashboard
-pip install pandas numpy scikit-learn matplotlib
-python python_analysis/default_predictor.py
-```
-
----
-
-## 🏷️ Topics
-`loan-default` `credit-risk` `delinquency` `sql` `python` `power-bi` `tableau` `banking-analytics` `kri` `executive-dashboard` `risk-management`
+Planned: correct the EmploymentType query, fix the dashboard titles and bar labels (both Tableau and Power BI) noted above, add a proper classification model (e.g., logistic regression) to predict approval probability with a validation methodology, and extend KPIs beyond the current descriptive set.
